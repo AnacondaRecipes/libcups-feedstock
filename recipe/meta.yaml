@@ -11,7 +11,7 @@ source:
 
 build:
   number: 1
-  skip: True # [not linux]
+  skip: True                                      # [not linux]
 
 requirements:
   build:
@@ -27,8 +27,8 @@ requirements:
 
 test:
   commands:
-    - test -f ${PREFIX}/lib/libcups${SHLIB_EXT}   # [unix]
-    - test -f ${PREFIX}/include/cups/cups.h       # [unix]
+    - test -f ${PREFIX}/lib/libcups${SHLIB_EXT}
+    - test -f ${PREFIX}/include/cups/cups.h
 
 about:
   home: https://openprinting.github.io/cups/

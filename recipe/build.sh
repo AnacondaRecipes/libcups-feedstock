@@ -1,5 +1,5 @@
 if [[ "$target_platform" == linux* ]]; then
-    export LIBS="-lrt"
+    export LIBS="-lrt -L$PREFIX/lib"
 fi
 
 ./configure --prefix=$PREFIX --with-components=core --libdir=$PREFIX/lib --includedir=$PREFIX/include
