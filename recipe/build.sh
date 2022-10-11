@@ -6,7 +6,7 @@ fi
 
 # The "-wno-abi" flag is required for PPC64LE; see the link for some discussion.
 # https://lists.mcs.anl.gov/pipermail/petsc-dev/2021-June/027496.html
-make -j${CPU_COUNT} CFLAGS="-wno-abi ${CFLAGS}"
+make -j${CPU_COUNT} CFLAGS="-Wno-abi ${CFLAGS}"
 
 # The "check" command should work, but requires the build process to be launched
 # by a non-root user, which is currently not supported.
