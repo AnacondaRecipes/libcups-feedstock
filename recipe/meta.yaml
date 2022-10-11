@@ -11,7 +11,7 @@ source:
 
 build:
   number: 1
-  skip: True # [not linux]
+  skip: True # [not unix]
 
 requirements:
   build:
@@ -19,11 +19,11 @@ requirements:
     - {{ compiler('cxx') }}
     - make
   host:
-    - krb5
     - zlib
+    - openssl
   run:
-    - krb5
     - zlib
+    - openssl
 
 test:
   commands:
