@@ -11,14 +11,13 @@ source:
 
 build:
   number: 1
-  skip: True # [not unix]
+  skip: True # [not linux]
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - make
-    - libtool
   host:
     - zlib
     - openssl
