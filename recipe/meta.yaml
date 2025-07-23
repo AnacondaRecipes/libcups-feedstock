@@ -10,11 +10,14 @@ source:
   sha256: f03ccb40b087d1e30940a40e0141dcbba263f39974c20eb9f2521066c9c6c908
 
 build:
-  number: 1
+  number: 2
   skip: True                                      # [not linux]
+  run_exports:
+    - {{ pin_subpackage(name, max_pin='x.x') }}
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - make
