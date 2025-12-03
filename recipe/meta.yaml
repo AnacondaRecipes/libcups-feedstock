@@ -1,5 +1,5 @@
 {% set name = "libcups" %}
-{% set version = "2.4.2" %}
+{% set version = "2.4.15" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/OpenPrinting/cups/releases/download/v{{ version }}/cups-{{ version }}-source.tar.gz
-  sha256: f03ccb40b087d1e30940a40e0141dcbba263f39974c20eb9f2521066c9c6c908
+  sha256: eff0bbd48ff1abcbb8e46e28e85aefaffa391a1d9c4d8dc92ab3822a13008d7f
 
 build:
-  number: 2
+  number: 0
   skip: True                                      # [not linux]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
@@ -22,19 +22,21 @@ requirements:
     - {{ compiler('cxx') }}
     - make
   host:
-    - zlib
+    - zlib {{ zlib }}
     - openssl {{ openssl }}
   run:
-    - zlib
-    - openssl 3.*
+    - {{ pin_compatible('zlib') }}
+    - {{ pin_compatible('openssl') }}
 
 test:
   commands:
     - test -f ${PREFIX}/lib/libcups${SHLIB_EXT}
     - test -f ${PREFIX}/include/cups/cups.h
+    - test -x ${PREFIX}/bin/cups-config
+    - cups-config --version
 
 about:
-  home: https://openprinting.github.io/cups/
+  home: https://openprinting.github.io/cups
   license: Apache-2.0
   license_family: Apache
   license_file: LICENSE
