@@ -25,13 +25,15 @@ requirements:
     - zlib {{ zlib }}
     - openssl {{ openssl }}
   run:
-    - zlib
-    - openssl 3.*
+    - {{ pin_compatible('zlib') }}
+    - {{ pin_compatible('openssl') }}
 
 test:
   commands:
     - test -f ${PREFIX}/lib/libcups${SHLIB_EXT}
     - test -f ${PREFIX}/include/cups/cups.h
+    - test -x ${PREFIX}/bin/cups-config
+    - cups-config --version
 
 about:
   home: https://openprinting.github.io/cups

@@ -1,14 +1,12 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 if [[ "$target_platform" == linux* ]]; then
-    export LIBS="-lrt -L$PREFIX/lib"
+    export LIBS="${LIBS:-} -lrt -L$PREFIX/lib"
 fi
 
 ./configure --prefix="$PREFIX" --with-components=core --libdir="$PREFIX"/lib --includedir="$PREFIX"/include
 
-# The "-wno-abi" flag is required for PPC64LE; see the link for some discussion.
-# https://lists.mcs.anl.gov/pipermail/petsc-dev/2021-June/027496.html
-make -j"${CPU_COUNT}" CFLAGS="-Wno-abi ${CFLAGS}"
+make -j"${CPU_COUNT}"
 
 # The "check" command should work, but requires the build process to be launched
 # by a non-root user, which is currently not supported.
