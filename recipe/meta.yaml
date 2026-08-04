@@ -1,5 +1,5 @@
 {% set name = "libcups" %}
-{% set version = "2.4.15" %}
+{% set version = "2.4.19" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://github.com/OpenPrinting/cups/releases/download/v{{ version }}/cups-{{ version }}-source.tar.gz
-  sha256: eff0bbd48ff1abcbb8e46e28e85aefaffa391a1d9c4d8dc92ab3822a13008d7f
+  sha256: 820984b12a67f98705785aae2dd1347fe0ac097828001d4583ff64574aed6389
 
 build:
   number: 0
-  skip: True                                      # [not linux]
+  skip: true  # [not linux]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
@@ -40,7 +40,7 @@ about:
   license: Apache-2.0
   license_family: Apache
   license_file: LICENSE
-  summary: 'OpenPrinting CUPS is the standards-based, open source printing system'
+  summary: OpenPrinting CUPS is the standards-based, open source printing system
   description: |
     OpenPrinting CUPS is the current standards-based, open source printing system developed by
     OpenPrinting for Linux® and other Unix®-like operating systems.
